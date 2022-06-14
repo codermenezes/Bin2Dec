@@ -12,7 +12,7 @@ export const Field = styled.div`
   flex-direction: column;
 `
 export const Label = styled.span`
-  margin: 10px;
+  margin: 5px 0px 5px 10px;
   font-size: 18px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 `
@@ -29,4 +29,30 @@ export const BinaryTextInput = styled.input`
   &:focus {
     border: 1px solid orange;
   }
+`
+export const Button = styled.button`
+  width: 30%;
+  margin-bottom: 0px;
+  margin-left: 25px;
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 2px;
+  font-size: 18px;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid green;
+    color: green;
+  }
+`
+export const DecimalTextInput = styled.input`
+  width: 50%;
+  font-size: 18px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #a3a3a3;
+  padding: 10px;
+  border-radius: 2px;
+  background: #e0f0e0;
+  outline: none;
 `
