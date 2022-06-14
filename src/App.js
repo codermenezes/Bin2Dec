@@ -5,7 +5,9 @@ import {
   StyledForm,
   Field,
   Label,
-  BinaryTextInput
+  BinaryTextInput,
+  Button,
+  DecimalTextInput
 } from './styles'
 
 function App() {
@@ -15,17 +17,32 @@ function App() {
 
   const onFormSubmit = e => {
     e.preventDefault()
-    if (binaryText.match(/ˆ[0-1]+$/g) == null) {
+    if (binaryText.match(/^[0-1]+$/g) === null) {
       setErrorMessage('Enter either 0 or 1')
       return
     }
+    setErrorMessage('')
+
+    const reversedBinaryText = binaryText
+      .split('')
+      .map(Number)
+      .reverse()
+
+    const result = reversedBinaryText.reduce(
+      (accumulator, currentValue, idx) =>
+        accumulator + currentValue * Math.pow(2, idx)
+    )
+      setDecimalText(result)
   }
+
+
 
   return (
     <>
-      <h1 style={{color: 'red'}}>Binary to Decimal Converter</h1>
+      <h1 style={{color: 'blue'}}>Binary to Decimal Converter</h1>
 
       <StyledForm onSubmit={onFormSubmit}>
+        {errorMessage && <span style={{ color: 'red' }}>{errorMessage}</span>}
         <br />
         <Field>
           <Label>Binary Input</Label>
@@ -38,10 +55,18 @@ function App() {
               value={binaryText}
               onChange={e => setBinaryText(e.target.value)}
             />
-
+            <Button type="submit">Convert</Button>
           </div>
         </Field>
-
+        <Field>
+          <Label>Decimal Output</Label>
+          <DecimalTextInput
+            Type="text"
+            name="decimal"
+            value={decimalText}
+            disabled
+          />
+        </Field>
       </StyledForm>
 
     </>
